@@ -10,7 +10,11 @@ import nltk
 nltk.download('punkt')
 
 def summarize_html(url: str, sentences_count: int, language: str = 'english') -> str:
-    parser = HtmlParser.from_url(url, Tokenizer(language))
+    try:
+        parser = HtmlParser.from_url(url, Tokenizer(language))
+    except requests.exceptions.HTTPError as e:
+        st.text(e.response.status_code)
+        st.text(e.response.text)
     stemmer = Stemmer(language)
     summarizer = Summarizer(stemmer)
     summarizer.stop_words = get_stop_words(language)
