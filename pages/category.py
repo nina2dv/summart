@@ -60,7 +60,7 @@ sentences_count = st.sidebar.slider('Max sentences per summary:', min_value=1,
                                     max_value=10,
                                     value=3)
 
-category = st.sidebar.selectbox('Search Top Headlines By Category:', options=['business',
+category = st.sidebar.selectbox('Search Top Headlines by Category:', options=['business',
                                                                 'entertainment',
                                                                 'general',
                                                                 'health',
