@@ -51,7 +51,7 @@ def get_top_headlines(sentences_count: int, **kwargs) -> list:
     return summarize_news_api(articles, sentences_count)
 
 
-API_KEY = os.environ['API_KEY']
+API_KEY = st.secrets['API_KEY']
 
 st.title('News Category Summarizer')
 
