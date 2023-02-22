@@ -6,7 +6,8 @@ from sumy.nlp.stemmers import Stemmer
 from sumy.utils import get_stop_words
 import requests
 import newspaper
-import os
+import nltk
+nltk.download('punkt')
 
 def summarize_html(url: str, sentences_count: int, language: str = 'english') -> str:
     parser = HtmlParser.from_url(url, Tokenizer(language))
