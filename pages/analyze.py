@@ -1,6 +1,7 @@
 import streamlit as st
 import newspaper
-
+import nltk
+nltk.download('punkt')
 from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lex_rank import LexRankSummarizer
