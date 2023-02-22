@@ -65,8 +65,7 @@ category = st.sidebar.selectbox('Search Top Headlines by Category:', options=['b
                                                                 'general',
                                                                 'health',
                                                                 'science',
-                                                                'sports',
-                                                                'technology'], index=1)
+                                                                'sports'], index=1)
 
 summaries = get_top_headlines(sentences_count, apiKey=API_KEY,
                               sortBy='publishedAt',
