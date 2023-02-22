@@ -54,13 +54,13 @@ def get_top_headlines(sentences_count: int, **kwargs) -> list:
 
 API_KEY = st.secrets['API_KEY']
 
-st.title('News Category Summarizer')
+st.title('News Summarizer by Category')
 
 sentences_count = st.sidebar.slider('Max sentences per summary:', min_value=1,
                                     max_value=10,
                                     value=3)
 
-category = st.sidebar.selectbox('Search By Category:', options=['business',
+category = st.sidebar.selectbox('Search Top Headlines By Category:', options=['business',
                                                                 'entertainment',
                                                                 'general',
                                                                 'health',
