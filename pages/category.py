@@ -17,7 +17,8 @@ def summarize_html(url: str, sentences_count: int, language: str = 'english') ->
     except requests.exceptions.HTTPError as e:
         st.text(e.response.status_code)
         st.text(e.response.text)
-        global flag = False
+        global flag 
+        flag = False
     stemmer = Stemmer(language)
     summarizer = Summarizer(stemmer)
     summarizer.stop_words = get_stop_words(language)
