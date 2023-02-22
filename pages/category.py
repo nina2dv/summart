@@ -16,6 +16,8 @@ def summarize_html(url: str, sentences_count: int, language: str = 'english') ->
         parser = HtmlParser.from_url(url, Tokenizer(language))
     except requests.exceptions.HTTPError as e:
         st.text(e.response.status_code)
+        st.text(type(e.response.status_code))
+
         st.text(e.response.text)
         st.text("TESTING")
         global flag 
