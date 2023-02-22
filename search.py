@@ -1,5 +1,4 @@
 import streamlit as st
-import os
 import requests
 import newspaper
 from sumy.parsers.plaintext import PlaintextParser
@@ -12,7 +11,7 @@ form = st.form(key='my_form')
 search = form.text_input(label='Search')
 submit_button = form.form_submit_button(label='Enter')
 
-apiKEY = os.environ['API_KEY']
+apiKEY = st.secrets['API_KEY']
 
 @st.experimental_memo
 def lsa_sum(arti):
