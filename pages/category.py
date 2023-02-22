@@ -17,6 +17,7 @@ def summarize_html(url: str, sentences_count: int, language: str = 'english') ->
     except requests.exceptions.HTTPError as e:
         st.text(e.response.status_code)
         st.text(e.response.text)
+        st.text("TESTING")
         global flag 
         flag = False
     stemmer = Stemmer(language)
@@ -53,25 +54,13 @@ def summarize_news_api(articles: list, sentences_count: int) -> list:
 
 def search_articles(sentences_count: int, **kwargs) -> list:
     url = 'https://newsapi.org/v2/everything/'
-    try:
-        articles = news_api_request(url, **kwargs)
-    except requests.exceptions.HTTPError as e:
-        st.text(e.response.status_code)
-        st.text(e.response.text)
-        st.text("TESTING")
-
+    articles = news_api_request(url, **kwargs)
     return summarize_news_api(articles, sentences_count)
 
 
 def get_top_headlines(sentences_count: int, **kwargs) -> list:
     url = 'https://newsapi.org/v2/top-headlines/'
-    try:
-        articles = news_api_request(url, **kwargs)
-    except requests.exceptions.HTTPError as e:
-        st.text(e.response.status_code)
-        st.text(e.response.text)
-        st.text("TESTING1")
-
+    articles = news_api_request(url, **kwargs)
     return summarize_news_api(articles, sentences_count)
 
 
