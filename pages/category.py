@@ -10,16 +10,14 @@ import nltk
 nltk.download('punkt')
 
 flag = True
+error_dict = {400: "Bad Request", 403: "Forbidden", 404: "Not Found", 500: "Internal Server Error", 502: "Bad Gateway", 503: "Service Unavailable"}
 
 def summarize_html(url: str, sentences_count: int, language: str = 'english') -> str:
     try:
         parser = HtmlParser.from_url(url, Tokenizer(language))
     except requests.exceptions.HTTPError as e:
-        st.text(e.response.status_code)
-        st.text(type(e.response.status_code))
-
+        st.text(f"{e.response.status_code} - {error_dict[e.response.status_code]}")
         st.text(e.response.text)
-        st.text("TESTING")
         global flag 
         flag = False
     stemmer = Stemmer(language)
