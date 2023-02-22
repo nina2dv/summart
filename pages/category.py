@@ -9,12 +9,15 @@ import newspaper
 import nltk
 nltk.download('punkt')
 
+flag = True
+
 def summarize_html(url: str, sentences_count: int, language: str = 'english') -> str:
     try:
         parser = HtmlParser.from_url(url, Tokenizer(language))
     except requests.exceptions.HTTPError as e:
         st.text(e.response.status_code)
         st.text(e.response.text)
+        global flag = False
     stemmer = Stemmer(language)
     summarizer = Summarizer(stemmer)
     summarizer.stop_words = get_stop_words(language)
@@ -38,8 +41,11 @@ def news_api_request(url: str, **kwargs) -> list:
 
 def summarize_news_api(articles: list, sentences_count: int) -> list:
     for article in articles:
-        summary = summarize_html(article.get('url'), sentences_count)
-        article.update({'summary': summary})
+        if flag: 
+            summary = summarize_html(article.get('url'), sentences_count)
+            article.update({'summary': summary})
+        else:
+            articles = []
 
     return articles
 
