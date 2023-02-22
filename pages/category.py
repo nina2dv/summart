@@ -9,19 +9,6 @@ import newspaper
 import os
 
 def summarize_html(url: str, sentences_count: int, language: str = 'english') -> str:
-    """
-    Summarizes text from URL
-
-    Inputs
-    ----------
-    url: URL for full text
-    sentences_count: specifies max number of sentences for return value
-    language: specifies language of text
-
-    Return
-    ----------
-    summary of text from URL
-    """
     parser = HtmlParser.from_url(url, Tokenizer(language))
     stemmer = Stemmer(language)
     summarizer = Summarizer(stemmer)
