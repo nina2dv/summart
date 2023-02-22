@@ -58,6 +58,8 @@ def search_articles(sentences_count: int, **kwargs) -> list:
     except requests.exceptions.HTTPError as e:
         st.text(e.response.status_code)
         st.text(e.response.text)
+        st.text("TESTING")
+
     return summarize_news_api(articles, sentences_count)
 
 
@@ -68,6 +70,8 @@ def get_top_headlines(sentences_count: int, **kwargs) -> list:
     except requests.exceptions.HTTPError as e:
         st.text(e.response.status_code)
         st.text(e.response.text)
+        st.text("TESTING1")
+
     return summarize_news_api(articles, sentences_count)
 
 
