@@ -16,8 +16,9 @@ def summarize_html(url: str, sentences_count: int, language: str = 'english') ->
     try:
         parser = HtmlParser.from_url(url, Tokenizer(language))
     except requests.exceptions.HTTPError as e:
-        st.text(f"{e.response.status_code} - {error_dict[e.response.status_code]}")
-        st.text(e.response.text)
+        st.markdown(f"### {e.response.status_code} - {error_dict[e.response.status_code]}")
+        st.write("--Check out a different category in the meantime--")
+        st.text("`{e.response.text}'")
         global flag 
         flag = False
     stemmer = Stemmer(language)
