@@ -7,6 +7,8 @@ from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lsa import LsaSummarizer
 
+st.set_page_config(page_title="Summarticle", page_icon="📰", layout="wide")
+
 st.title('News Search + Summary')
 
 form = st.form(key='my_form')
