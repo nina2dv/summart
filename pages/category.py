@@ -39,16 +39,23 @@ def summarize_news_api(articles: list, sentences_count: int) -> list:
 
     return articles
 
-
 def search_articles(sentences_count: int, **kwargs) -> list:
     url = 'https://newsapi.org/v2/everything/'
-    articles = news_api_request(url, **kwargs)
+    try:
+        articles = news_api_request(url, **kwargs)
+    except requests.exceptions.HTTPError as e:
+        st.text(e.response.status_code)
+        st.text(e.response.text)
     return summarize_news_api(articles, sentences_count)
 
 
 def get_top_headlines(sentences_count: int, **kwargs) -> list:
     url = 'https://newsapi.org/v2/top-headlines/'
-    articles = news_api_request(url, **kwargs)
+    try:
+        articles = news_api_request(url, **kwargs)
+    except requests.exceptions.HTTPError as e:
+        st.text(e.response.status_code)
+        st.text(e.response.text)
     return summarize_news_api(articles, sentences_count)
 
 
@@ -65,7 +72,8 @@ category = st.sidebar.selectbox('Search Top Headlines by Category:', options=['b
                                                                 'general',
                                                                 'health',
                                                                 'science',
-                                                                'sports'], index=1)
+                                                                'sports',
+                                                                'technology'], index=1)
 
 summaries = get_top_headlines(sentences_count, apiKey=API_KEY,
                               sortBy='publishedAt',
