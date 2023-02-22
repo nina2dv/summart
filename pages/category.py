@@ -18,7 +18,8 @@ def summarize_html(url: str, sentences_count: int, language: str = 'english') ->
     except requests.exceptions.HTTPError as e:
         st.markdown(f"## {e.response.status_code} - {error_dict[e.response.status_code]}")
         st.write("--Check out a different category in the meantime--")
-        st.code(e.response.text, language='http')
+        st.markdown(e.response.text, unsafe_allow_html=True)
+        # st.code(e.response.text, language='http')
         global flag 
         flag = False
     stemmer = Stemmer(language)
