@@ -28,12 +28,14 @@ def summarize_html(url: str, sentences_count: int, language: str = 'english') ->
 
     summary = ''
     if flag:
-        for sentence in summarizer(parser.document, sentences_count):
-            if not summary:
-                summary += str(sentence)
-            else:
-                summary += ' ' + str(sentence)
-
+        try: 
+            for sentence in summarizer(parser.document, sentences_count):
+                if not summary:
+                    summary += str(sentence)
+                else:
+                    summary += ' ' + str(sentence)
+        except (UnicodeDecodeError, LookupError, etree.ParserError) as e:
+            raise ParserRejectedMarkup(e)
     return summary
 
 
