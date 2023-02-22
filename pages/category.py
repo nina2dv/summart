@@ -24,11 +24,12 @@ def summarize_html(url: str, sentences_count: int, language: str = 'english') ->
     summarizer.stop_words = get_stop_words(language)
 
     summary = ''
-    for sentence in summarizer(parser.document, sentences_count):
-        if not summary:
-            summary += str(sentence)
-        else:
-            summary += ' ' + str(sentence)
+    if flag:
+        for sentence in summarizer(parser.document, sentences_count):
+            if not summary:
+                summary += str(sentence)
+            else:
+                summary += ' ' + str(sentence)
 
     return summary
 
