@@ -35,8 +35,9 @@ if submit_button:
     r = r.json()
     try:
         articles = r['articles']
-    except KeyError:
         st.write(articles)
+
+    except KeyError:
         st.write("_No results found :(_")
         flag = False
        
