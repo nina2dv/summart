@@ -31,8 +31,9 @@ if submit_button:
     url = f"https://newsapi.org/v2/top-headlines?q={search}&apiKey={apiKEY}"
     r = requests.get(url)
     r = r.json()
-    articles = r['articles']
-    for article in articles:
+    try:
+        articles = r['articles']
+        for article in articles:
         left_column, right_column = st.columns(2)
         with left_column:
             st.header(f"{[article['title']]}({article['url']})")
@@ -74,4 +75,7 @@ if submit_button:
         # st.write(article['content'])
 
         st.markdown("""---""")
+    except KeyError:
+        st.write("_No results found :(_")
+    
 
