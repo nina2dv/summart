@@ -6,6 +6,7 @@ from sumy.nlp.stemmers import Stemmer
 from sumy.utils import get_stop_words
 import requests
 import newspaper
+from lxml import etree
 import nltk
 nltk.download('punkt')
 
