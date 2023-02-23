@@ -1,8 +1,6 @@
 import streamlit as st
 import openai
-
 openai.api_key = st.secrets['openai_KEY']
-
 # prompt="Please find the key insights from the below text in maximum of 5 bullet points list format and also the summary in maximum of 3 sentences:\n" + text,
 
 
