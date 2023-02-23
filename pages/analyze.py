@@ -28,7 +28,9 @@ def open_summarize(prompt):
         temperature=.5,
         max_tokens=1000,
     ).choices[0].text
-    
+
+st.set_page_config(page_title="Summarticle", page_icon="📰", layout="wide")
+
 st.title('Article Analyzer')
 url = st.text_input("", placeholder='Paste URL and Enter')
 
