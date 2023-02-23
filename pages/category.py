@@ -19,7 +19,7 @@ def summarize_html(url: str, sentences_count: int, language: str = 'english') ->
         parser = HtmlParser.from_url(url, Tokenizer(language))
     except requests.exceptions.HTTPError as e:
         st.markdown(f"## {e.response.status_code} - {error_dict[e.response.status_code]}")
-        st.write("--Check out a different category in the meantime--")
+        st.write("_--Check out a different category in the meantime--_")
         st.markdown(e.response.text, unsafe_allow_html=True)
         # st.code(e.response.text, language='http')
         global flag 
