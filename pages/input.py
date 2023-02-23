@@ -89,28 +89,35 @@ submit_button = form.form_submit_button(label='Analyze Text')
 if input_text is not None and submit_button:
     col1, col2 = st.columns(2)
     with col1:
-        st.markdown("**Key Findings**")
-        st.warning(extract_key_findings(input_text))
+        try: 
+            st.markdown("**Key Findings**")
+            st.info(extract_key_findings(input_text))
 
-        st.markdown("""---""")
+            st.markdown("""---""")
 
-        st.markdown("**Summary**")
-        st.warning(extract_summary(input_text))
+            st.markdown("**Summary**")
+            st.info(extract_summary(input_text))
+        except openai.error.InvalidRequestError:
+            st.warning("**Error**")
     with col2:
-        st.markdown("**Sentiment Classification**")
-        st.info(sentiment(input_text))
-        
-        st.markdown("""---""")
-        
-        st.markdown("**Keywords**")
-        st.info(key_words(input_text))
+        try:
+            st.markdown("**Sentiment Classification**")
+            st.info(sentiment(input_text))
 
-        st.markdown("""---""")
+            st.markdown("""---""")
+
+            st.markdown("**Keywords**")
+            st.info(key_words(input_text))
+
+            st.markdown("""---""")
+
+            st.markdown("**Most Positive Words**")
+            st.success(most_positive_words(input_text))
+
+            st.markdown("""---""")
+
+            st.markdown("**Most Negative Words**")
+            st.error(most_negative_words(input_text))
         
-        st.markdown("**Most Positive Words**")
-        st.success(most_positive_words(input_text))
-
-        st.markdown("""---""")
-
-        st.markdown("**Most Negative Words**")
-        st.error(most_negative_words(input_text))
+        except openai.error.InvalidRequestError:
+            st.warning("**Error**")
