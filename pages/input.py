@@ -81,7 +81,7 @@ st.title("Input Analyzer :page_with_curl:")
 
 
 form = st.form(key='my_form')
-input_text = form.text_area(label='Enter your text to analyze', height=450)
+input_text = form.text_area(label='Enter your text to analyze', height=200)
 submit_button = form.form_submit_button(label='Analyze Text')
 
 if input_text is not None and submit_button:
