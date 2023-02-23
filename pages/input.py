@@ -96,15 +96,15 @@ if input_text is not None and submit_button:
             st.markdown("**Summary**")
             sum_text = extract_summary(input_text)
             st.info(sum_text)
+            
+            st.markdown("""---""")
+            
+            st.markdown("**Sentiment Classification**")
+            st.info(sentiment(input_text))
         except openai.error.InvalidRequestError:
             st.warning("**Error**")
     with col2:
         try:
-            st.markdown("**Sentiment Classification**")
-            st.info(sentiment(input_text))
-
-            st.markdown("""---""")
-
             st.markdown("**Keywords**")
             st.info(key_words(input_text))
 
