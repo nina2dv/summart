@@ -5,6 +5,7 @@ openai.api_key = st.secrets['openai_KEY']
 
 # prompt="Please find the key insights from the below text in maximum of 5 bullet points list format and also the summary in maximum of 3 sentences:\n" + text,
 
+
 def extract_key_findings(text):
     response = openai.Completion.create(
         model="text-davinci-003",
@@ -15,6 +16,7 @@ def extract_key_findings(text):
         frequency_penalty=0,
         presence_penalty=0)
     return response.choices[0].text
+
 
 def extract_summary(text):
     response = openai.Completion.create(
@@ -27,6 +29,7 @@ def extract_summary(text):
         presence_penalty=0)
     return response.choices[0].text
 
+
 def key_words(text):
     response = openai.Completion.create(
         model="text-davinci-003",
@@ -37,6 +40,19 @@ def key_words(text):
         frequency_penalty=0,
         presence_penalty=0)
     return response.choices[0].text
+
+
+def sentiment(text):
+    response = openai.Completion.create(
+        model="text-davinci-003",
+        prompt="Please classify the sentiment of the below text between 'Positive', 'Neutral' or 'Negative':\n" + text,
+        temperature=0.6,
+        max_tokens=256,
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0)
+    return response.choices[0].text
+
 
 def most_positive_words(text):
     response = openai.Completion.create(
@@ -49,6 +65,7 @@ def most_positive_words(text):
         presence_penalty=0)
     return response.choices[0].text
 
+
 def most_negative_words(text):
     response = openai.Completion.create(
         model="text-davinci-003",
@@ -60,8 +77,8 @@ def most_negative_words(text):
         presence_penalty=0)
     return response.choices[0].text
 
-# Main Page
 
+# Main Page
 st.title("Input Analyzer :page_with_curl:")
 
 
@@ -80,11 +97,16 @@ if input_text is not None and submit_button:
         st.markdown("**Summary**")
         st.warning(extract_summary(input_text))
     with col2:
+        st.markdown("**Sentiment Classification**")
+        st.info(sentiment(input_text))
+        
+        st.markdown("""---""")
+        
         st.markdown("**Keywords**")
         st.info(key_words(input_text))
 
         st.markdown("""---""")
-
+        
         st.markdown("**Most Positive Words**")
         st.success(most_positive_words(input_text))
 
