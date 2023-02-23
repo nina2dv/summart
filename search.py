@@ -34,7 +34,7 @@ if submit_button:
     r = requests.get(url)
     r = r.json()
     st.write(r)
-    if r.has_key("articles"):
+    if "articles" in r:
         articles = r['articles']
         st.write(articles)
         for article in articles:
@@ -79,4 +79,7 @@ if submit_button:
             # st.write(article['content'])
 
             st.markdown("""---""")
+    else:
+        st.write("_You have made too many requests recently. Developer accounts are limited to 100 requests over a 24 hour period (50 requests available every 12 hours)._")
+            
 
