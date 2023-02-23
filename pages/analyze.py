@@ -18,15 +18,16 @@ nlp.add_pipe("spacytextblob")
 
 import openai
 
+openai.api_key = st.secrets['openai_KEY']
 
 def open_summarize(prompt):
     augmented_prompt = f"summarize this text: {prompt}"
-    st.session_state["summary"] = openai.Completion.create(
+    return openai.Completion.create(
         model="text-davinci-003",
         prompt=augmented_prompt,
         temperature=.5,
         max_tokens=1000,
-    )["choices"][0]["text"]
+    ).choices[0].text
     
 st.title('Article Analyzer')
 url = st.text_input("", placeholder='Paste URL and Enter')
@@ -58,7 +59,7 @@ if url:
 
     art_sum = article.summary
 
-    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(['Full Text', 'Summary', 'NER', 'Sentiment', 'Images', 'Extra Summarizers'])
+    tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(['Full Text', 'Summary', 'NER', 'Sentiment', 'Images', 'Extra Summarizers', 'OpenAI'])
     with tab1:
         article.text
     with tab2:
@@ -116,4 +117,7 @@ if url:
         summary_list = [str(sentence) for sentence in summary_3]
         result = ' '.join(summary_list)
         st.write(result)
+    with tab7:
+        st.subheader("OpenAI Summary: ")
+        st.write(open_summarize(article.text))
 
