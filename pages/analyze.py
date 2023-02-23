@@ -72,7 +72,7 @@ if url:
     with tab6:
         sentences_count = st.slider('Max sentences per summary:', min_value=1,
                                             max_value=10,
-                                            value=5)
+                                            value=3)
         st.subheader("Lexrank: Unsupervised approach to text summarization based on graph-based centrality scoring of sentences")
         summarizer = LexRankSummarizer()
         summary = summarizer(parser.document, sentences_count)
