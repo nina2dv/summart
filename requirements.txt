@@ -6,3 +6,4 @@ spacy==3.5.0
 spacy-streamlit==1.0.4
 spacytextblob==4.0.0
 requests==2.28.1
+lxml==4.9.1
