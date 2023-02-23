@@ -41,7 +41,6 @@ def summarize_html(url: str, sentences_count: int, language: str = 'english') ->
             # pass
     return summary
 
-
 def news_api_request(url: str, **kwargs) -> list:
     params = kwargs
     res = requests.get(url, params=params)
