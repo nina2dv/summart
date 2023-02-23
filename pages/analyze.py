@@ -26,7 +26,7 @@ def open_summarize(prompt):
         model="text-davinci-003",
         prompt=augmented_prompt,
         temperature=.5,
-        max_tokens=1000,
+        max_tokens=3500,
     ).choices[0].text
 
 st.set_page_config(page_title="Summarticle", page_icon="📰", layout="wide")
