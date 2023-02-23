@@ -119,7 +119,7 @@ if input_text is not None and submit_button:
         
         except openai.error.InvalidRequestError:
             st.warning("**Error**")
-    image_resp = openai.Image.create(prompt=input_text, n=4, size="512x512")
-    st.image(image_resp)
+    image_resp = openai.Image.create(prompt=input_text, n=1, size="512x512")
+    st.image(image_resp["data"][0]["url"])
 
     
