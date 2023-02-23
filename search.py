@@ -33,7 +33,6 @@ if submit_button:
     url = f"https://newsapi.org/v2/top-headlines?q={search}&apiKey={apiKEY}"
     r = requests.get(url)
     r = r.json()
-    st.write(r)
     if "articles" in r:
         articles = r['articles']
         st.write(articles)
@@ -80,6 +79,7 @@ if submit_button:
 
             st.markdown("""---""")
     else:
-        st.write("_You have made too many requests recently. Developer accounts are limited to 100 requests over a 24 hour period (50 requests available every 12 hours)._")
+        st.write(r)
+        st.write("_Check out the 'analyze' page instead_")
             
 
