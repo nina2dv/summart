@@ -12,7 +12,7 @@ def extract_key_findings(text):
         top_p=1,
         frequency_penalty=0,
         presence_penalty=0)
-    return response['choices'][0]['text']
+    return response.choices[0].text
 
 
 def most_positive_words(text):
@@ -24,7 +24,7 @@ def most_positive_words(text):
         top_p=1,
         frequency_penalty=0,
         presence_penalty=0)
-    return response['choices'][0]['text']
+    return response.choices[0].text
 
 # Main Page
 
