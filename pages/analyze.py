@@ -15,6 +15,19 @@ spacy.cli.download("en_core_web_sm")
 nlp = spacy.load("en_core_web_sm")
 from spacytextblob.spacytextblob import SpacyTextBlob
 nlp.add_pipe("spacytextblob")
+
+import openai
+
+
+def open_summarize(prompt):
+    augmented_prompt = f"summarize this text: {prompt}"
+    st.session_state["summary"] = openai.Completion.create(
+        model="text-davinci-003",
+        prompt=augmented_prompt,
+        temperature=.5,
+        max_tokens=1000,
+    )["choices"][0]["text"]
+    
 st.title('Article Analyzer')
 url = st.text_input("", placeholder='Paste URL and Enter')
 
