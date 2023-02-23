@@ -71,12 +71,12 @@ if input_text is not None:
         col1, col2 = st.columns(2)
         with col1:
             st.markdown("**Key Findings**")
-            st.success(extract_key_findings(input_text))
+            st.warning(extract_key_findings(input_text))
             
             st.markdown("""---""")
 
             st.markdown("**Summary**")
-            st.success(extract_summary(input_text))
+            st.warning(extract_summary(input_text))
         with col2:
             st.markdown("**Keywords**")
             st.info(key_words(input_text))
