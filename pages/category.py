@@ -72,6 +72,7 @@ def get_top_headlines(sentences_count: int, **kwargs) -> list:
 
 API_KEY = st.secrets['API_KEY']
 
+st.set_page_config(page_title="Summarticle", page_icon="📰", layout="wide")
 st.title('News Summarizer by Category')
 
 sentences_count = st.sidebar.slider('Max sentences per summary:', min_value=1,
