@@ -34,8 +34,8 @@ def summarize_html(url: str, sentences_count: int, language: str = 'english') ->
                     summary += str(sentence)
                 else:
                     summary += ' ' + str(sentence)
-        except (UnicodeDecodeError, LookupError, etree.ParserError) as e:
-            raise ParserRejectedMarkup(e)
+        except etree.XMLSyntaxError, e:
+            pass
     return summary
 
 
@@ -128,7 +128,10 @@ for i in range(len(summaries)):
         st.write("_No Summary :(_")
 
     try:
-        st.write("Description: " + summaries[i]['description'])
+        if summaries[i]['description']:
+            st.write("Description: " + summaries[i]['description'])
+        else:
+            st.write("_No Description :(_")
     except:
         st.write("_No Description :(_")
 
