@@ -64,29 +64,31 @@ def most_negative_words(text):
 
 st.title("Input Analyzer :page_with_curl:")
 
-input_text = st.text_area("Enter your text to analyze", height=450)
 
-if input_text is not None:
-    if st.button("Analyze Text"):
-        col1, col2 = st.columns(2)
-        with col1:
-            st.markdown("**Key Findings**")
-            st.warning(extract_key_findings(input_text))
-            
-            st.markdown("""---""")
+form = st.form(key='my_form')
+input_text = form.text_area(label='Enter your text to analyze', height=450)
+submit_button = form.form_submit_button(label='Analyze Text')
 
-            st.markdown("**Summary**")
-            st.warning(extract_summary(input_text))
-        with col2:
-            st.markdown("**Keywords**")
-            st.info(key_words(input_text))
-            
-            st.markdown("""---""")
-            
-            st.markdown("**Most Positive Words**")
-            st.success(most_positive_words(input_text))
-            
-            st.markdown("""---""")
-            
-            st.markdown("**Most Negative Words**")
-            st.error(most_negative_words(input_text))
+if input_text is not None && submit_button:
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown("**Key Findings**")
+        st.warning(extract_key_findings(input_text))
+
+        st.markdown("""---""")
+
+        st.markdown("**Summary**")
+        st.warning(extract_summary(input_text))
+    with col2:
+        st.markdown("**Keywords**")
+        st.info(key_words(input_text))
+
+        st.markdown("""---""")
+
+        st.markdown("**Most Positive Words**")
+        st.success(most_positive_words(input_text))
+
+        st.markdown("""---""")
+
+        st.markdown("**Most Negative Words**")
+        st.error(most_negative_words(input_text))
