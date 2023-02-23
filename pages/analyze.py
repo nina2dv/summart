@@ -67,9 +67,10 @@ if url:
     with tab2:
         st.subheader("OpenAI Summary: ")
         try:
-            st.write(open_summarize(article.text))
+            open_text = open_summarize(article.text)
+            st.write(open_text)
         except openai.error.InvalidRequestError:
-            st.write("_Exceed this model's maximum context length :(_")
+            st.write("_Exceed this model's maximum context length (limit is around 1125 words) :(_")
         st.markdown("""---""")
         st.subheader("Newspaper3k Summary: ")
         st.write(art_sum)
