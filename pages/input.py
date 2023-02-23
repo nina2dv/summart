@@ -64,7 +64,7 @@ def most_negative_words(text):
 
 st.title("Input Analyzer :page_with_curl:")
 
-input_text = st.text_area("Enter your text to analyze")
+input_text = st.text_area("Enter your text to analyze", height=450)
 
 if input_text is not None:
     if st.button("Analyze Text"):
