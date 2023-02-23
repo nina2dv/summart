@@ -69,7 +69,7 @@ form = st.form(key='my_form')
 input_text = form.text_area(label='Enter your text to analyze', height=450)
 submit_button = form.form_submit_button(label='Analyze Text')
 
-if input_text is not None && submit_button:
+if input_text is not None and submit_button:
     col1, col2 = st.columns(2)
     with col1:
         st.markdown("**Key Findings**")
