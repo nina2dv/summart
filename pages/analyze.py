@@ -8,17 +8,23 @@ from sumy.summarizers.lex_rank import LexRankSummarizer
 from sumy.summarizers.luhn import LuhnSummarizer
 from sumy.summarizers.lsa import LsaSummarizer
 from sumy.summarizers.text_rank import TextRankSummarizer
-# NLP Pkgs
+import openai
 import spacy_streamlit
 import spacy
 spacy.cli.download("en_core_web_sm")
-nlp = spacy.load("en_core_web_sm")
+
+@st.cache
+def load_model():
+    return spacy.load("en_core_web_sm")
+
+nlp = load_model()
+
 from spacytextblob.spacytextblob import SpacyTextBlob
 nlp.add_pipe("spacytextblob")
 
-import openai
 
 openai.api_key = st.secrets['openai_KEY']
+
 
 def open_summarize(prompt):
     augmented_prompt = f"summarize this text: {prompt}"
