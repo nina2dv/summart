@@ -134,7 +134,7 @@ if url:
     with tab5:
         try: 
             st.info(sentiment(article.text))
-        except openai.InvalidRequestError:
+        except openai.error.InvalidRequestError:
             st.warning("Error")
         if art_sum != "":
             left_column, right_column = st.columns(2)
