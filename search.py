@@ -13,7 +13,7 @@ st.sidebar.success("Select a page above: ")
 st.title('News Search + Summary')
 
 form = st.form(key='my_form')
-search = form.text_input(label='Search')
+search = form.text_input(label='Search the news by keyword')
 submit_button = form.form_submit_button(label='Enter')
 
 apiKEY = st.secrets['API_KEY']
