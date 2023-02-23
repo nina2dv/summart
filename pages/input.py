@@ -9,7 +9,7 @@ def extract_key_findings(text):
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt="Please find the key insights from the below text in maximum of 5 bullet points list format:\n" + text,
-        temperature=0.7,
+        temperature=0.5,
         max_tokens=256,
         top_p=1,
         frequency_penalty=0,
@@ -31,7 +31,7 @@ def key_words(text):
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt="Please extract the important keywords from the below text\n" + text,
-        temperature=0.7,
+        temperature=0.6,
         max_tokens=256,
         top_p=1,
         frequency_penalty=0,
@@ -42,7 +42,7 @@ def most_positive_words(text):
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt="Please extract the most positive keywords from the below text\n" + text,
-        temperature=0.7,
+        temperature=0.45,
         max_tokens=256,
         top_p=1,
         frequency_penalty=0,
@@ -53,7 +53,7 @@ def most_negative_words(text):
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt="Please extract the most negative keywords from the below text\n" + text,
-        temperature=0.7,
+        temperature=0.45,
         max_tokens=256,
         top_p=1,
         frequency_penalty=0,
