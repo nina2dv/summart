@@ -15,7 +15,7 @@ spacy.cli.download("en_core_web_sm")
 nlp = spacy.load("en_core_web_sm")
 from spacytextblob.spacytextblob import SpacyTextBlob
 nlp.add_pipe("spacytextblob")
-st.title('Article Scraper')
+st.title('Article Analyzer')
 url = st.text_input("", placeholder='Paste URL and Enter')
 
 if url:
