@@ -119,5 +119,8 @@ if url:
         st.write(result)
     with tab7:
         st.subheader("OpenAI Summary: ")
-        st.write(open_summarize(article.text))
+        try:
+            st.write(open_summarize(article.text))
+        except openai.error.InvalidRequestError:
+            st.write("_Exceed this model's maximum context length :(_")
 
