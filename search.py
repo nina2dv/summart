@@ -33,53 +33,48 @@ if submit_button:
     url = f"https://newsapi.org/v2/top-headlines?q={search}&apiKey={apiKEY}"
     r = requests.get(url)
     r = r.json()
-    try:
-        articles = r['articles']
-        st.write(articles)
-        for article in articles:
-            left_column, right_column = st.columns(2)
-            with left_column:
-                st.header(f"{[article['title']]}({article['url']})")
-            with right_column:
-                try:
-                    st.image(article['urlToImage'], width=400)
-                except:
-                    st.write("_No Image :(_")
-            st.markdown(f"<span style = 'background-color:#FF4B4B; padding:10px; border-radius:20px'> Published at: {article['publishedAt']}</span>", unsafe_allow_html=True)
-            # st.write("Published at: " + article['publishedAt'])
-            # st.write("URL: " + article['url'])
-
-            left_col, right_col = st.columns(2)
-            with left_col:
-                if article['author']:
-                    st.markdown("### Author(s): " + article['author'])
-            with right_col:
-                st.markdown(f"### Source: {article['source']['name']}")
-
+    articles = r['articles']
+    st.write(articles)
+    for article in articles:
+        left_column, right_column = st.columns(2)
+        with left_column:
+            st.header(f"{[article['title']]}({article['url']})")
+        with right_column:
             try:
-                arti = newspaper.Article(article['url'])
-                arti.download()
-                arti.parse()
-                arti.nlp()
-                key = arti.keywords
-                st.markdown("##### Keywords: " + ", ".join(key))
-                st.write("Summary: " + arti.summary)
-
-                # result = lsa_sum(arti)
-                # st.write(result)
-
+                st.image(article['urlToImage'], width=400)
             except:
-                st.write("_No Summary :(_")
+                st.write("_No Image :(_")
+        st.markdown(f"<span style = 'background-color:#FF4B4B; padding:10px; border-radius:20px'> Published at: {article['publishedAt']}</span>", unsafe_allow_html=True)
+        # st.write("Published at: " + article['publishedAt'])
+        # st.write("URL: " + article['url'])
 
-            try:
-                st.write("Description: " + article['description'])
-            except:
-                st.write("_No Description :(_")
-            # st.write(article['content'])
+        left_col, right_col = st.columns(2)
+        with left_col:
+            if article['author']:
+                st.markdown("### Author(s): " + article['author'])
+        with right_col:
+            st.markdown(f"### Source: {article['source']['name']}")
 
-            st.markdown("""---""")
-    except KeyError:
-        st.write("_No results found :(_")
-        flag = False
+        try:
+            arti = newspaper.Article(article['url'])
+            arti.download()
+            arti.parse()
+            arti.nlp()
+            key = arti.keywords
+            st.markdown("##### Keywords: " + ", ".join(key))
+            st.write("Summary: " + arti.summary)
 
+            # result = lsa_sum(arti)
+            # st.write(result)
+
+        except:
+            st.write("_No Summary :(_")
+
+        try:
+            st.write("Description: " + article['description'])
+        except:
+            st.write("_No Description :(_")
+        # st.write(article['content'])
+
+        st.markdown("""---""")
 
