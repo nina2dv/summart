@@ -31,6 +31,19 @@ def open_summarize(prompt):
         max_tokens=1500,
     ).choices[0].text
 
+
+def sentiment(text):
+    response = openai.Completion.create(
+        model="text-davinci-003",
+        prompt="Please classify the sentiment of the below text between 'Positive', 'Neutral' or 'Negative':\n" + text,
+        temperature=0.6,
+        max_tokens=256,
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0)
+    return response.choices[0].text
+
+
 st.set_page_config(page_title="Summarticle", page_icon="📰", layout="wide")
 
 st.title('Article Analyzer')
@@ -119,17 +132,21 @@ if url:
             spacy_streamlit.visualize_ner(docx, labels=nlp.get_pipe('ner').labels)
        
     with tab5:
-         if art_sum != "":
+        try: 
+            st.info(sentiment(article.text))
+        except openai.InvalidRequestError:
+            st.warning("Error")
+        if art_sum != "":
             left_column, right_column = st.columns(2)
             with left_column:
                 st.subheader(f"Polarity: {docx._.blob.polarity}")
             with right_column:
                 st.subheader(f"Subjectivity: {docx._.blob.subjectivity}")
 
-            senti = docx._.blob.sentiment_assessments.assessments
-            for x in senti:
-                st.text(x)
-        
+                senti = docx._.blob.sentiment_assessments.assessments
+                for x in senti:
+                    st.text(x)
+
     with tab6:
         all_images = article.images
         for image in all_images:
