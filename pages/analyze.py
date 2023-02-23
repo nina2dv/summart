@@ -13,11 +13,7 @@ import spacy_streamlit
 import spacy
 spacy.cli.download("en_core_web_sm")
 
-@st.cache
-def load_model():
-    return spacy.load("en_core_web_sm")
-
-nlp = load_model()
+nlp = spacy.load("en_core_web_sm")
 
 from spacytextblob.spacytextblob import SpacyTextBlob
 nlp.add_pipe("spacytextblob")
