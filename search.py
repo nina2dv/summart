@@ -33,7 +33,7 @@ if submit_button:
     url = f"https://newsapi.org/v2/top-headlines?q={search}&apiKey={apiKEY}"
     r = requests.get(url)
     r = r.json()
-    articles = r['articles']
+    articles = r['article']
     st.write(articles)
     for article in articles:
         left_column, right_column = st.columns(2)
