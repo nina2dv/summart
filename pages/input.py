@@ -51,9 +51,6 @@ def most_negative_words(text):
 
 st.title("Input Analyzer :page_with_curl:")
 
-with st.expander("About this application"):
-    st.markdown("This app is built using the [OpenAI GPT3](https://platform.openai.com/) and Streamlit")
-
 input_text = st.text_area("Enter your text to analyze")
 
 if input_text is not None:
