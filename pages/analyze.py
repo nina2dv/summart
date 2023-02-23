@@ -34,6 +34,8 @@ def open_summarize(prompt):
 st.set_page_config(page_title="Summarticle", page_icon="📰", layout="wide")
 
 st.title('Article Analyzer')
+st.subheader('Enter an article URL for summarization')
+
 url = st.text_input("", placeholder='Paste URL and Enter')
 
 if url:
