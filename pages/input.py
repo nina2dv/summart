@@ -94,7 +94,8 @@ if input_text is not None and submit_button:
             st.markdown("""---""")
 
             st.markdown("**Summary**")
-            st.info(extract_summary(input_text))
+            sum_text = extract_summary(input_text)
+            st.info(sum_text)
         except openai.error.InvalidRequestError:
             st.warning("**Error**")
     with col2:
@@ -119,7 +120,7 @@ if input_text is not None and submit_button:
         
         except openai.error.InvalidRequestError:
             st.warning("**Error**")
-    image_resp = openai.Image.create(prompt=input_text, n=1, size="512x512")
+    image_resp = openai.Image.create(prompt=sum_text, n=1, size="512x512")
     st.image(image_resp["data"][0]["url"])
 
     
