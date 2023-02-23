@@ -37,8 +37,8 @@ def summarize_html(url: str, sentences_count: int, language: str = 'english') ->
                 else:
                     summary += ' ' + str(sentence)
         except (ParserError, ParseError) as e:
-            st.text(e)
-            # pass
+            # st.text(e)
+            pass
     return summary
 
 def news_api_request(url: str, **kwargs) -> list:
