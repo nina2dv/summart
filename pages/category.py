@@ -6,7 +6,8 @@ from sumy.nlp.stemmers import Stemmer
 from sumy.utils import get_stop_words
 import requests
 import newspaper
-import xml.etree.ElementTree as ET
+from lxml.etree import ParseError
+from lxml.etree import ParserError
 import nltk
 nltk.download('punkt')
 
@@ -35,7 +36,7 @@ def summarize_html(url: str, sentences_count: int, language: str = 'english') ->
                     summary += str(sentence)
                 else:
                     summary += ' ' + str(sentence)
-        except ET.ParseError as e:
+        except (ParserError, ParseError) as e
             st.text(e)
             # pass
     return summary
