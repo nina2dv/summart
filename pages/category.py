@@ -36,7 +36,7 @@ def summarize_html(url: str, sentences_count: int, language: str = 'english') ->
                     summary += str(sentence)
                 else:
                     summary += ' ' + str(sentence)
-        except (ParserError, ParseError) as e
+        except (ParserError, ParseError) as e:
             st.text(e)
             # pass
     return summary
