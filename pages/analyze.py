@@ -59,31 +59,19 @@ if url:
 
     art_sum = article.summary
 
-    tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(['Full Text', 'Summary', 'NER', 'Sentiment', 'Images', 'Extra Summarizers', 'OpenAI'])
+    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(['Full Text', 'Summary', 'Extra Summarizers', 'NER', 'Sentiment', 'Images'])
     with tab1:
         article.text
     with tab2:
+        st.subheader("OpenAI Summary: ")
+        try:
+            st.write(open_summarize(article.text))
+        except openai.error.InvalidRequestError:
+            st.write("_Exceed this model's maximum context length :(_")
+        st.markdown("""---""")
+        st.subheader("Newspaper3k Summary: ")
         st.write(art_sum)
     with tab3:
-        if art_sum != "":
-            docx = nlp(art_sum)
-            spacy_streamlit.visualize_ner(docx, labels=nlp.get_pipe('ner').labels)
-    with tab4:
-        if art_sum != "":
-            left_column, right_column = st.columns(2)
-            with left_column:
-                st.subheader(f"Polarity: {docx._.blob.polarity}")
-            with right_column:
-                st.subheader(f"Subjectivity: {docx._.blob.subjectivity}")
-
-            senti = docx._.blob.sentiment_assessments.assessments
-            for x in senti:
-                st.text(x)
-    with tab5:
-        all_images = article.images
-        for image in all_images:
-            st.image(image, width=400)
-    with tab6:
         sentences_count = st.slider('Max sentences per summary:', min_value=1,
                                             max_value=10,
                                             value=3)
@@ -117,10 +105,26 @@ if url:
         summary_list = [str(sentence) for sentence in summary_3]
         result = ' '.join(summary_list)
         st.write(result)
-    with tab7:
-        st.subheader("OpenAI Summary: ")
-        try:
-            st.write(open_summarize(article.text))
-        except openai.error.InvalidRequestError:
-            st.write("_Exceed this model's maximum context length :(_")
+        
+    with tab4:
+        if art_sum != "":
+            docx = nlp(art_sum)
+            spacy_streamlit.visualize_ner(docx, labels=nlp.get_pipe('ner').labels)
+       
+    with tab5:
+         if art_sum != "":
+            left_column, right_column = st.columns(2)
+            with left_column:
+                st.subheader(f"Polarity: {docx._.blob.polarity}")
+            with right_column:
+                st.subheader(f"Subjectivity: {docx._.blob.subjectivity}")
+
+            senti = docx._.blob.sentiment_assessments.assessments
+            for x in senti:
+                st.text(x)
+        
+    with tab6:
+        all_images = article.images
+        for image in all_images:
+            st.image(image, width=400)
 
