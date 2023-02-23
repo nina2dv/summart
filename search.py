@@ -35,7 +35,6 @@ if submit_button:
     r = r.json()
     if "articles" in r:
         articles = r['articles']
-        st.write(articles)
         for article in articles:
             left_column, right_column = st.columns(2)
             with left_column:
