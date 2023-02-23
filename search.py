@@ -8,6 +8,7 @@ from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lsa import LsaSummarizer
 
 st.set_page_config(page_title="Summarticle", page_icon="📰", layout="wide")
+st.sidebar.success("Select a page above: ")
 
 st.title('News Search + Summary')
 
